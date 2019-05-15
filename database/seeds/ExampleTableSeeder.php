@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Example;
 
 class ExampleTableSeeder extends Seeder
 {
@@ -12,5 +13,11 @@ class ExampleTableSeeder extends Seeder
     public function run()
     {
         //
+        for($i = 1; $i <= 3; $i++){
+            $example = new Example;
+            $example->title = 'title '.$i;
+            $example->content = 'content '.$i;
+            $example->save();
+        }
     }
 }
