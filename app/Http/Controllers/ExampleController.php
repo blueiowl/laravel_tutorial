@@ -29,4 +29,21 @@ class ExampleController extends Controller
         return view('example.index', ['examples' => $examples]);
     }
 
+    //詳細表示
+    // public function show($exampleForShow){
+    //     $example = new Example;
+    //     $example = $exampleForShow;
+    //     return view('example.show', ['example' => $example]);
+    // }
+
+    //詳細表示    
+    public function show($id){
+        $example = Example::find($id);
+        return view('example.show', ['example' => $example]);
+    }
+
+    // public function show($example){
+    //     // return view('example.show')->with('example', $example);
+    //     return view('example.show', ['example' => $example]);
+    // }
 }

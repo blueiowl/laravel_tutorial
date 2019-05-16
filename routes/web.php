@@ -18,3 +18,4 @@
 Route::get('/', 'ExampleController@index');
 Route::get('/create', 'ExampleController@create');
 Route::post('/', 'ExampleController@store');
+Route::get('/show/{id}', 'ExampleController@show');

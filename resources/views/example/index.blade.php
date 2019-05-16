@@ -12,6 +12,6 @@
 
 @section('content')
         @foreach ($examples as $example)
-            <p>{{ $example->workName }}</p>
+            <p><a href="/show/{{ $example->id }}">{{ $example->workName }}</a></p>
         @endforeach
 @endsection
