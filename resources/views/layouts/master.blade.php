@@ -6,6 +6,7 @@
 </head>
 <body>
     <h1>@yield('header')</h1>
+    <h4>@yield('subheader')<h4>
     <div class="content">
         @yield('content')
     </div>

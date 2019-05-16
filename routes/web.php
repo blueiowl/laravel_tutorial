@@ -16,3 +16,5 @@
 // });
 
 Route::get('/', 'ExampleController@index');
+Route::get('/create', 'ExampleController@create');
+Route::post('/store', 'ExampleController@store');

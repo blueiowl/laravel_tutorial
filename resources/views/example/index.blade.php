@@ -1,13 +1,17 @@
 @extends('layouts.master')
 
-@section('title', '記事一覧')
+@section('title', '作業一覧')
 
 @section('header')
-    一覧表示
+    作業一覧
+@endsection
+
+@section('subheader')
+<a href="/create">新規作業作成</a>
 @endsection
 
 @section('content')
         @foreach ($examples as $example)
-            <p>{{ $example->title }}</p>
+            <p>{{ $example->workName }}</p>
         @endforeach
 @endsection
