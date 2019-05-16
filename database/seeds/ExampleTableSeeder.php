@@ -15,7 +15,8 @@ class ExampleTableSeeder extends Seeder
         //
         for($i = 1; $i <= 3; $i++){
             $example = new Example;
-            $example->title = 'title '.$i;
+            $example->workName = 'workName'.$i;
+            $example->status  = 'status '.$i;
             $example->content = 'content '.$i;
             $example->save();
         }
