@@ -12,6 +12,7 @@
 
 @section('content')
         @foreach ($examples as $example)
-            <p><a href="/show/{{ $example->id }}">{{ $example->workName }}</a></p>
+            <p><a href="/show/{{ $example->id }}">{{ $example->workName }}</a> 
+               <a href="/edit/{{ $example->id }}"> [編集]</a></p>
         @endforeach
 @endsection

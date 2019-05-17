@@ -6,10 +6,6 @@
     作業詳細
 @endsection
 
-@section('subheader')
-    <a href="/edit/{{ $example->id }}">作業編集</a>
-@endsection
-
 @section('content')
     <p>ID: {{ $example->id }}</p>    
     <p>作業名: {{ $example->workName }}</p>
