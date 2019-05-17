@@ -49,4 +49,10 @@ class ExampleController extends Controller
         $example->save();
         return redirect('/');
     }
+
+    //削除
+    public function delete($id){
+        Example::find($id)->delete();
+        return redirect('/');
+    }    
 }
