@@ -23,3 +23,6 @@ Route::get('/edit/{id}', 'ExampleController@edit');
 Route::post('/update/{id}', 'ExampleController@update');
 Route::get('/delete/{id}', 'ExampleController@delete');
 Route::get('/search', 'ExampleController@search');
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/logout', 'ExampleController@logout');

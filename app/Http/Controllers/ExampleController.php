@@ -4,13 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Example;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class ExampleController extends Controller
 {
     //一覧表示
-    public function index(){
+    public function index(REQUEST $request){
         $examples = Example::all();
-        return view('example.index', ['examples' => $examples]);
+        $user = Auth::user();
+        // $sort = $request->sort;
+        // $items = Users::orderBy($sort, 'asc')->simplePaginate(5);
+        // $param = ['items' => $items, 'sort' => $sort, 'user' => $user];
+        // $param = ['sort' => $sort, 'user' => $user];
+        return view('example.index', ['examples' => $examples, 'user' => $user ]);
     }
 
     //新規作成
@@ -61,4 +68,10 @@ class ExampleController extends Controller
         $examples = Example::where('content', $request->content)->get();
         return view('example.search', ['examples' => $examples]);
     }
+
+    //ログアウト
+    // public function logout(){
+    //     Auth::logout();
+    //     return redirect('/');
+    // }
 }

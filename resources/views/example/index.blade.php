@@ -18,11 +18,24 @@
 @endsection
 
 @section('content')
-        @foreach ($examples as $example)
-            <p>
-                <a href="/show/{{ $example->id }}">{{ $example->workName }}</a> 
-                <a href="/edit/{{ $example->id }}"> [編集]</a>
-                <a href="/delete/{{ $example->id }}"> [削除]</a>
-            </p>
-        @endforeach
+
+    @if(Auth::check())
+        <p>
+            USER: {{ $user->name . '(' . $user->email .')' }}|
+            <a href="/home">home(ここからログアウトできます)</a>
+        </p>
+    @else
+        <p>
+            *ログインしていません。(<a href="/login">ログイン</a>)|
+            <a href="/register">登録</a>
+        </p>
+    @endif
+
+    @foreach ($examples as $example)
+        <p>
+            <a href="/show/{{ $example->id }}">{{ $example->workName }}</a> 
+            <a href="/edit/{{ $example->id }}"> [編集]</a>
+            <a href="/delete/{{ $example->id }}"> [削除]</a>
+        </p>
+    @endforeach
 @endsection
