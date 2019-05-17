@@ -22,3 +22,4 @@ Route::get('/show/{id}', 'ExampleController@show');
 Route::get('/edit/{id}', 'ExampleController@edit');
 Route::post('/update/{id}', 'ExampleController@update');
 Route::get('/delete/{id}', 'ExampleController@delete');
+Route::get('/search', 'ExampleController@search');

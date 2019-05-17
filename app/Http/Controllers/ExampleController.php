@@ -54,5 +54,11 @@ class ExampleController extends Controller
     public function delete($id){
         Example::find($id)->delete();
         return redirect('/');
-    }    
+    } 
+
+    //検索
+    public function search(REQUEST $request){
+        $examples = Example::where('content', $request->content)->get();
+        return view('example.search', ['examples' => $examples]);
+    }
 }

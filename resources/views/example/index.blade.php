@@ -7,7 +7,14 @@
 @endsection
 
 @section('subheader')
-<a href="/create">新規作業作成</a>
+<p><a href="/create">新規作業作成</a></p>
+<p>
+    <form method="GET" action="/search">
+        <label>作業内容検索</label>
+        <input type="text" name="content">
+        <input type="submit" value="検索">
+    </form>
+</p>
 @endsection
 
 @section('content')
