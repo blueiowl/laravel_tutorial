@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-<form method="POST" action="/">
+<form method="POST" action="/store">
     {{ csrf_field() }}
     <p>
         <label>新規作業名</label>

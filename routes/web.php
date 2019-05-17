@@ -17,5 +17,7 @@
 
 Route::get('/', 'ExampleController@index');
 Route::get('/create', 'ExampleController@create');
-Route::post('/', 'ExampleController@store');
+Route::post('/store', 'ExampleController@store');
 Route::get('/show/{id}', 'ExampleController@show');
+Route::get('/edit/{id}', 'ExampleController@edit');
+Route::post('/update/{id}', 'ExampleController@update');

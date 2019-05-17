@@ -22,19 +22,11 @@ class ExampleController extends Controller
     public function store(REQUEST $request){
         $example = new Example;
         $example->workName = $request->workName;
-        $example->status = $request->status;
-        $example->content = $request->content;
+        $example->status   = $request->status;
+        $example->content  = $request->content;
         $example->save();
-        $examples = Example::all();
-        return view('example.index', ['examples' => $examples]);
+        return redirect('/');
     }
-
-    //詳細表示
-    // public function show($exampleForShow){
-    //     $example = new Example;
-    //     $example = $exampleForShow;
-    //     return view('example.show', ['example' => $example]);
-    // }
 
     //詳細表示    
     public function show($id){
@@ -42,8 +34,19 @@ class ExampleController extends Controller
         return view('example.show', ['example' => $example]);
     }
 
-    // public function show($example){
-    //     // return view('example.show')->with('example', $example);
-    //     return view('example.show', ['example' => $example]);
-    // }
+    //編集
+    public function edit($id){
+        $example = Example::find($id);
+        return view('example.edit', ['example' => $example]);
+    }
+
+    //更新
+    public function update(REQUEST $request, $id){
+        $example = Example::find($id);
+        $example->workName = $request->workName;
+        $example->status   = $request->status;
+        $example->content  = $request->content;
+        $example->save();
+        return redirect('/');
+    }
 }
