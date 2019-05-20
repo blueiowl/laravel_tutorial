@@ -6,8 +6,11 @@
     作業一覧
 @endsection
 
+
 @section('subheader')
-<p><a href="/create">新規作業作成</a></p>
+@if(Auth::check())
+    <p><a href="/create/{{ $user->id }}">新規作業作成</a></p>
+@endif
 <p>
     <form method="GET" action="/search">
         <label>作業内容検索</label>
@@ -33,9 +36,13 @@
 
     @foreach ($examples as $example)
         <p>
-            <a href="/show/{{ $example->id }}">{{ $example->workName }}</a> 
-            <a href="/edit/{{ $example->id }}"> [編集]</a>
-            <a href="/delete/{{ $example->id }}"> [削除]</a>
+            <a href="/show/{{ $example->id }}">{{ $example->workName }}</a>
+            [{{ $example->status }}][{{ $example->updated_at }}] 
+            @if(Auth::check())
+                <a href="/edit/{{ $example->id }}/{{ $user->id }}"> [編集]</a>
+                <a href="/delete/{{ $example->id }}"> [削除]</a>
+            @endif
         </p>
     @endforeach
+
 @endsection

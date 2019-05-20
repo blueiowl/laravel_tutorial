@@ -16,10 +16,10 @@
 // });
 
 Route::get('/', 'ExampleController@index');
-Route::get('/create', 'ExampleController@create');
+Route::get('/create/{id}', 'ExampleController@create');
 Route::post('/store', 'ExampleController@store');
 Route::get('/show/{id}', 'ExampleController@show');
-Route::get('/edit/{id}', 'ExampleController@edit');
+Route::get('/edit/{id}/{uid}', 'ExampleController@edit');
 Route::post('/update/{id}', 'ExampleController@update');
 Route::get('/delete/{id}', 'ExampleController@delete');
 Route::get('/search', 'ExampleController@search');

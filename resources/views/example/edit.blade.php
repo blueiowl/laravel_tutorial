@@ -25,6 +25,10 @@
         <label>作業内容</label>
         <textarea name="content" rows="5" cols="30" >{{ $example->content }}</textarea>
     </p>
+    {{-- 更新者id --}}
+    <input type="hidden" name="updated_id" value="{{ $user->id }}">
+    {{-- 更新者名 --}}
+    <input type="hidden" name="updated_name" value="{{ $user->name }}">
     <input type="submit" value="送信">
 </form>
 @endsection

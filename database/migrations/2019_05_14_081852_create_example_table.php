@@ -18,6 +18,10 @@ class CreateExampleTable extends Migration
             $table->string('workName');
             $table->string('status');
             $table->string('content');
+            $table->unsignedInteger('created_id');
+            $table->string('created_name');
+            $table->unsignedInteger('updated_id');
+            $table->string('updated_name');
             $table->timestamps();
         });
     }
