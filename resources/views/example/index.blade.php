@@ -30,6 +30,7 @@
             <p>
                 <a href="/show/{{ $example->id }}">{{ $example->work_name }}</a>
                 [{{ $example->status }}][{{ $example->updated_at }}] 
+                
                 <a href="/edit/{{ $example->id }}"> [編集]</a>
                 <form method="POST" action="/delete/{{ $example->id }}">
                     {{ csrf_field() }}
