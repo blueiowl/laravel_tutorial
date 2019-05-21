@@ -15,7 +15,11 @@
         <p>
             <a href="/show/{{ $example->id }}">{{ $example->workName }}</a> 
             <a href="/edit/{{ $example->id }}"> [編集]</a>
-            <a href="/delete/{{ $example->id }}"> [削除]</a>
+            <form method="POST" action="/delete/{{ $example->id }}">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE')}}
+                    <button>削除</button>
+            </form>
         </p>
     @endforeach
 @endsection
