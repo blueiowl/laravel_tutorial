@@ -6,19 +6,18 @@
     作業一覧
 @endsection
 
-@if(Auth::check())
-    @section('subheader')
+@section('subheader')
+    @if(Auth::check())
         <p><a href="/create/{{ $user->id }}">新規作業作成</a></p>
-
-    <p>
-        <form method="GET" action="/search">
-            <label>作業内容検索</label>
-            <input type="text" name="content">
-            <input type="submit" value="検索">
-        </form>
-    </p>
-    @endsection
-@endif
+        <p>
+            <form method="GET" action="/search">
+                <label>作業内容検索</label>
+                <input type="text" name="content">
+                <input type="submit" value="検索">
+            </form>
+        </p>
+    @endif
+@endsection
 
 @section('content')
     @if(Auth::check())
@@ -36,7 +35,7 @@
         @endforeach
     @else
         <p>
-            *ログインしていません。(<a href="/login">ログイン</a>)|
+            *ログインしていません。ログイン時のみ作業が表示されます。<a href="/login">ログイン</a>|
             <a href="/register">登録</a>
         </p>
     @endif

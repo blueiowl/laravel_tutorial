@@ -13,18 +13,16 @@ class ExampleController extends Controller
     public function index(REQUEST $request){
         $user = Auth::user();
 
-        //ログイン時は、ログインユーザのデータのみ表示する
+        //ログインユーザのデータのみ表示する
         if(Auth::check()){
             $examples_undone        = Example::where('created_id', $user->id)->where('status', '未着手')->orderBy('updated_at', 'desc')->get();
             $examples_workInProcess = Example::where('created_id', $user->id)->where('status', '作業中')->orderBy('updated_at', 'desc')->get();
             $examples_done          = Example::where('created_id', $user->id)->where('status', '完了')->orderBy('updated_at', 'desc')->get();
+            $examples = collect($examples_undone)->concat($examples_workInProcess)->concat($examples_done);        
+            return view('example.index', ['examples' => $examples, 'user' => $user ]);
         }else{
-            $examples_undone        = Example::where('status', '未着手')->orderBy('updated_at', 'desc')->get();
-            $examples_workInProcess = Example::where('status', '作業中')->orderBy('updated_at', 'desc')->get();
-            $examples_done          = Example::where('status', '完了')->orderBy('updated_at', 'desc')->get();
+            return view('example.index');
         }
-        $examples = collect($examples_undone)->concat($examples_workInProcess)->concat($examples_done);        
-        return view('example.index', ['examples' => $examples, 'user' => $user ]);
     }
 
     //新規作成
