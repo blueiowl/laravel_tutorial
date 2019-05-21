@@ -11,7 +11,6 @@ class ExampleController extends Controller
 {
     //一覧表示
     public function index(REQUEST $request){
-        // $examples = Example::all();
         $user = Auth::user();
 
         //ログイン時は、ログインユーザのデータのみ表示する
@@ -24,16 +23,7 @@ class ExampleController extends Controller
             $examples_workInProcess = Example::where('status', '作業中')->orderBy('updated_at', 'desc')->get();
             $examples_done          = Example::where('status', '完了')->orderBy('updated_at', 'desc')->get();
         }
-
-        // $examples = collect($examples_undone)->merge($examples_workInProcess)->merge($examples_done);
-        $examples = collect($examples_undone)->concat($examples_workInProcess)->concat($examples_done);
-
-        
-        // $sort = $request->sort;
-        // $items = Users::orderBy($sort, 'asc')->simplePaginate(5);
-        // $param = ['items' => $items, 'sort' => $sort, 'user' => $user];
-        // $param = ['sort' => $sort, 'user' => $user];
-        // return view('example.index', ['examples' => $examples_undone, 'user' => $user ]);
+        $examples = collect($examples_undone)->concat($examples_workInProcess)->concat($examples_done);        
         return view('example.index', ['examples' => $examples, 'user' => $user ]);
     }
 
@@ -44,16 +34,9 @@ class ExampleController extends Controller
     }
 
     //保存
-    public function store(REQUEST $request){
-        $example               = new Example;
-        $example->workName     = $request->workName;
-        $example->status       = $request->status;
-        $example->content      = $request->content;
-        $example->created_id   = $request->created_id;
-        $example->created_name = $request->created_name;
-        $example->updated_id   = $request->created_id;
-        $example->updated_name = $request->created_name;
-        $example->save();
+    public function store(Request $request){
+        $example = new Example;
+        $example->fill($request->all())->save();
         return redirect('/');
     }
 
@@ -71,14 +54,9 @@ class ExampleController extends Controller
     }
 
     //更新
-    public function update(REQUEST $request, $id){
-        $example               = Example::find($id);
-        $example->workName     = $request->workName;
-        $example->status       = $request->status;
-        $example->content      = $request->content;
-        $example->updated_id   = $request->updated_id;
-        $example->updated_name = $request->updated_name;
-        $example->save();
+    public function update(Request $request, $id){
+        $example = Example::find($id);
+        $example->fill($request->all())->save();
         return redirect('/');
     }
 
@@ -93,10 +71,4 @@ class ExampleController extends Controller
         $examples = Example::where('content', $request->content)->get();
         return view('example.search', ['examples' => $examples]);
     }
-
-    //ログアウト
-    // public function logout(){
-    //     Auth::logout();
-    //     return redirect('/');
-    // }
 }
