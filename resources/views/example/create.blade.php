@@ -11,28 +11,23 @@
     {{ csrf_field() }}
     <p>
         <label>新規作業名</label>
-        <input type="text" name="workName">
+        <input type="text" name="work_name">
     </p>
     <p>
         <label>作業状態</label>
         <select name="status">
-            <option value="未着手">未着手</option>
-            <option value="作業中">作業中</option>
-            <option value="完了">完了</option>
+            <option value=1>未着手</option>
+            <option value=2>作業中</option>
+            <option value=3>完了</option>
         </select>
     </p>
     <p>
         <label>作業内容</label>
         <textarea name="content" rows="5" cols="30"></textarea>
     </p>
-    {{-- 作成者id --}}
-    <input type="hidden" name="created_id" value="{{ $user->id }}">
-    {{-- 更新者id --}}
-    <input type="hidden" name="updated_id" value="{{ $user->id }}">
-    {{-- 作成者名 --}}
-    <input type="hidden" name="created_name" value="{{ $user->name }}">
-    {{-- 更新者名 --}}
-    <input type="hidden" name="updated_name" value="{{ $user->name }}">
+
+    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+    
     <input type="submit" value="送信">
 </form>
 @endsection

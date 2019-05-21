@@ -4,31 +4,28 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Example;
-use App\User;
+// use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class ExampleController extends Controller
 {
     //一覧表示
     public function index(REQUEST $request){
-        $user = Auth::user();
-
         //ログインユーザのデータのみ表示する
         if(Auth::check()){
-            $examples_undone        = Example::where('created_id', $user->id)->where('status', '未着手')->orderBy('updated_at', 'desc')->get();
-            $examples_workInProcess = Example::where('created_id', $user->id)->where('status', '作業中')->orderBy('updated_at', 'desc')->get();
-            $examples_done          = Example::where('created_id', $user->id)->where('status', '完了')->orderBy('updated_at', 'desc')->get();
+            $examples_undone        = Example::where('user_id', Auth::user()->id)->where('status', 1)->orderBy('updated_at', 'desc')->get();
+            $examples_workInProcess = Example::where('user_id', Auth::user()->id)->where('status', 2)->orderBy('updated_at', 'desc')->get();
+            $examples_done          = Example::where('user_id', Auth::user()->id)->where('status', 3)->orderBy('updated_at', 'desc')->get();
             $examples = collect($examples_undone)->concat($examples_workInProcess)->concat($examples_done);        
-            return view('example.index', ['examples' => $examples, 'user' => $user ]);
+            return view('example.index', ['examples' => $examples]);
         }else{
             return view('example.index');
         }
     }
 
     //新規作成
-    public function create($id){
-        $user    = User::find($id);
-        return view('example.create', ['user' => $user]);
+    public function create(){
+        return view('example.create');
     }
 
     //保存
@@ -45,10 +42,9 @@ class ExampleController extends Controller
     }
 
     //編集
-    public function edit($id, $uid){
+    public function edit($id){
         $example = Example::find($id);
-        $user    = User::find($uid);
-        return view('example.edit', ['example' => $example, 'user' => $user]);
+        return view('example.edit', ['example' => $example]);
     }
 
     //更新

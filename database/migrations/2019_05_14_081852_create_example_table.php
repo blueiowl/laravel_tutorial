@@ -15,15 +15,14 @@ class CreateExampleTable extends Migration
     {
         Schema::create('example', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('workName');
-            $table->string('status');
+            $table->string('work_name');
+            $table->unsignedInteger('status');
             $table->string('content');
-            $table->unsignedInteger('created_id');
-            $table->string('created_name');
-            $table->unsignedInteger('updated_id');
-            $table->string('updated_name');
+            $table->unsignedInteger('user_id');
             $table->timestamps();
         });
+
+        // Schema::rename('example', 'todos');
     }
 
     /**

@@ -13,10 +13,10 @@
 
 
 Route::get('/', 'ExampleController@index');
-Route::get('/create/{id}', 'ExampleController@create');
+Route::get('/create', 'ExampleController@create');
 Route::post('/store', 'ExampleController@store');
 Route::get('/show/{id}', 'ExampleController@show');
-Route::get('/edit/{id}/{uid}', 'ExampleController@edit');
+Route::get('/edit/{id}', 'ExampleController@edit');
 Route::post('/update/{id}', 'ExampleController@update');
 Route::delete('/delete/{id}', 'ExampleController@destroy');
 Route::get('/search', 'ExampleController@search');

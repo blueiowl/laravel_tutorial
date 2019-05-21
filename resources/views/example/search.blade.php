@@ -13,7 +13,7 @@
 @section('content')
     @foreach ($examples as $example)
         <p>
-            <a href="/show/{{ $example->id }}">{{ $example->workName }}</a> 
+            <a href="/show/{{ $example->id }}">{{ $example->work_name }}</a> 
             <a href="/edit/{{ $example->id }}"> [編集]</a>
             <form method="POST" action="/delete/{{ $example->id }}">
                     {{ csrf_field() }}

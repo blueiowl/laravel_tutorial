@@ -10,12 +10,9 @@ class example extends Model
     public $table = "example";
 
     protected $fillable = [
-        'workName',
+        'work_name',
         'status',
         'content',
-        'created_id',
-        'created_name',
-        'updated_id',
-        'updated_name'
+        'user_id'
     ];
 }
