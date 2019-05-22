@@ -11,14 +11,13 @@
 |
 */
 
-
-Route::get('/', 'ExampleController@index');
-Route::get('/create', 'ExampleController@create');
-Route::post('/store', 'ExampleController@store');
-Route::get('/show/{id}', 'ExampleController@show');
-Route::get('/edit/{id}', 'ExampleController@edit');
-Route::post('/update/{id}', 'ExampleController@update');
-Route::delete('/delete/{id}', 'ExampleController@delete');
-Route::get('/search', 'ExampleController@search');
+Route::get('/', 'TodoController@index');
+Route::get('/create', 'TodoController@create');
+Route::post('/store', 'TodoController@store');
+Route::get('/show/{id}', 'TodoController@show');
+Route::get('/edit/{id}', 'TodoController@edit');
+Route::post('/update/{id}', 'TodoController@update');
+Route::delete('/delete/{id}', 'TodoController@delete');
+Route::get('/search', 'TodoController@search');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

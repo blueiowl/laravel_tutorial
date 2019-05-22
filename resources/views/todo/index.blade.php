@@ -8,9 +8,9 @@
 
 @section('subheader')
     @if(Auth::check())
-        <p><a href="{{ action('ExampleController@create') }}">新規作業作成</a></p>
+        <p><a href="{{ action('TodoController@create') }}">新規作業作成</a></p>
         <p>
-            <form method="GET" action="{{ action('ExampleController@search') }}">
+            <form method="GET" action="{{ action('TodoController@search') }}">
                 <label>作業内容検索</label>
                 <input type="text" name="content">
                 <input type="submit" value="検索">
@@ -26,19 +26,19 @@
             USER: {{ Auth::user()->name . '(' . Auth::user()->id .')' }}|
             <a href="{{ action('HomeController@index') }}">home(ここからログアウトできます)</a>
         </p>
-        @foreach ($examples as $example)
+        @foreach ($todos as $todo)
             <p>
-                <a href="{{ action('ExampleController@show', $example->id) }}">{{ $example->work_name }}</a>
-                @if($example->status === 1) 
+                <a href="{{ action('TodoController@show', $todo->id) }}">{{ $todo->work_name }}</a>
+                @if($todo->status === 1) 
                     [未着手]
-                @elseif($example->status === 2)
+                @elseif($todo->status === 2)
                     [作業中]
                 @else
                     [完了]
                 @endif
-                [{{ $example->updated_at }}] 
-                <a href="{{ action('ExampleController@edit', $example->id) }}"> [編集]</a>
-                <form method="POST" action="{{ action('ExampleController@delete', $example->id) }}">
+                [{{ $todo->updated_at }}] 
+                <a href="{{ action('TodoController@edit', $todo->id) }}"> [編集]</a>
+                <form method="POST" action="{{ action('TodoController@delete', $todo->id) }}">
                     {{ csrf_field() }}
                     {{ method_field('DELETE')}}
                     <button>削除</button>

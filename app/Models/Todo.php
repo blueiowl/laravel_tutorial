@@ -1,14 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class example extends Model
+class Todo extends Model
 {
     //
-    public $table = "example";
-
     protected $fillable = [
         'work_name',
         'status',

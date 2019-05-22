@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateExampleTable extends Migration
+class CreateTodosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class CreateExampleTable extends Migration
      */
     public function up()
     {
-        Schema::create('example', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('todos', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('work_name');
             $table->unsignedInteger('status');
             $table->string('content');
             $table->unsignedInteger('user_id');
             $table->timestamps();
         });
-
-        // Schema::rename('example', 'todos');
     }
 
     /**
@@ -32,6 +30,6 @@ class CreateExampleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('example');
+        Schema::dropIfExists('todos');
     }
 }
