@@ -23,19 +23,13 @@
 
     @if(Auth::check())
         <p>
-            USER: {{ Auth::user()->name . '(' . Auth::user()->id .')' }}|
+            USER: {{ Auth::user()->name }}|
             <a href="{{ action('HomeController@index') }}">home(ここからログアウトできます)</a>
         </p>
         @foreach ($todos as $todo)
             <p>
                 <a href="{{ action('TodoController@show', $todo->id) }}">{{ $todo->work_name }}</a>
-                @if($todo->status === 1) 
-                    [未着手]
-                @elseif($todo->status === 2)
-                    [作業中]
-                @else
-                    [完了]
-                @endif
+                [{{ $todo->status }}]
                 [{{ $todo->updated_at }}] 
                 <a href="{{ action('TodoController@edit', $todo->id) }}"> [編集]</a>
                 <form method="POST" action="{{ action('TodoController@delete', $todo->id) }}">

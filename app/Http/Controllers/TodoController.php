@@ -12,10 +12,10 @@ class TodoController extends Controller
     public function index(REQUEST $request){
         //ログインユーザのデータのみ表示する
         if(Auth::check()){
-            $todos_undone        = Todo::where('user_id', Auth::user()->id)->where('status', 1)->orderBy('updated_at', 'desc')->get();
-            $todos_workInProcess = Todo::where('user_id', Auth::user()->id)->where('status', 2)->orderBy('updated_at', 'desc')->get();
-            $todos_done          = Todo::where('user_id', Auth::user()->id)->where('status', 3)->orderBy('updated_at', 'desc')->get();
-            $todos = collect($todos_undone)->concat($todos_workInProcess)->concat($todos_done);        
+            $todos_undone        = Auth::user()->todos->where('status', '未着手')->sortByDesc('updated_at');
+            $todos_workInProcess = Auth::user()->todos->where('status', '作業中')->sortByDesc('updated_at');
+            $todos_done          = Auth::user()->todos->where('status', '完了')->sortByDesc('updated_at');
+            $todos = collect($todos_undone)->concat($todos_workInProcess)->concat($todos_done);
             return view('todo.index', ['todos' => $todos]);
         }else{
             return view('todo.index');

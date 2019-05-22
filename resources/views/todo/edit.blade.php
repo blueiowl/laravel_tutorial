@@ -16,9 +16,9 @@
     <p>
         <label>作業状態</label>
         <select name="status">
-            <option value=1 @if($todo->status === 1) selected @endif>未着手</option>
-            <option value=2 @if($todo->status === 2) selected @endif>作業中</option>
-            <option value=3 @if($todo->status === 3) selected @endif>完了</option>
+            <option value=1 @if($todo->status === '未着手') selected @endif>未着手</option>
+            <option value=2 @if($todo->status === '作業中') selected @endif>作業中</option>
+            <option value=3 @if($todo->status === '完了') selected @endif>完了</option>
         </select>
     </p>
     <p>
