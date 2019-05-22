@@ -1,3 +1,36 @@
+# Laravel tutorial
+
+Hi there.
+こちらはあなたの技術力を確認するためのリポジトリです。
+以下に指定する内容について、実装してPull requestを出してください。
+よろしくお願いします。
+
+## 実装してほしい内容
+
+ToDoリスト管理サイト
+
+- Todoリスト　一覧表示画面(index)
+- ToDoリスト　個別ToDoの作成機能　タイトルと内容を指定して作成できること
+- ToDoリスト　個別ToDoの完了状態への変更機能
+- ToDoリスト　個別ToDoの詳細画面
+- ToDoリスト　個別ToDoの編集画面
+- ToDoリスト　個別ToDoの削除機能
+- ToDoリスト 一覧表示でToDo内容の検索機能
+- ユーザー登録機能
+- ログイン・ログアウト機能
+- ログイン状態を示し、いちばん新しい未達成ToDoを表示するTop画面
+- ユーザーとTodoの項目を関連付けて、自分の作成したTodoのみを表示・更新できるようにする
+- Bootstrapによるテンプレートへのスタイル適用
+
+## 注意事項
+
+- 基本的にどんなライブラリを用いても構いません。
+- 指定の時間内にすべての項目が終わらなくても構いません。その際は完了した部分までをPull Request化してください
+- 作成したToDoのデータは永続化してください
+- DBにはMySQLを利用してください
+
+---
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
