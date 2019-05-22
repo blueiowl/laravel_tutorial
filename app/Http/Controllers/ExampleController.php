@@ -55,7 +55,7 @@ class ExampleController extends Controller
     }
 
     //削除
-    public function destroy($id){
+    public function delete($id){
         Example::find($id)->delete();
         return redirect('/');
     } 

@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-<form method="POST" action="/update/{{ $example->id }}">
+<form method="POST" action="{{ action('ExampleController@update', $example->id) }}">
     {{ csrf_field() }}
     <p>
         <label>新規作業名</label>
