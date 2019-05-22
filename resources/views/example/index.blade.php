@@ -29,7 +29,14 @@
         @foreach ($examples as $example)
             <p>
                 <a href="{{ action('ExampleController@show', $example->id) }}">{{ $example->work_name }}</a>
-                [{{ $example->status }}][{{ $example->updated_at }}] 
+                @if($example->status === 1) 
+                    [未着手]
+                @elseif($example->status === 2)
+                    [作業中]
+                @else
+                    [完了]
+                @endif
+                [{{ $example->updated_at }}] 
                 <a href="{{ action('ExampleController@edit', $example->id) }}"> [編集]</a>
                 <form method="POST" action="{{ action('ExampleController@delete', $example->id) }}">
                     {{ csrf_field() }}
