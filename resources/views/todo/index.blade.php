@@ -32,7 +32,7 @@
                 [{{ $todo->status }}]
                 [{{ $todo->updated_at }}] 
                 <a href="{{ action('TodoController@edit', $todo->id) }}"> [編集]</a>
-                <form method="POST" action="{{ action('TodoController@delete', $todo->id) }}">
+                <form method="POST" action="{{ action('TodoController@destroy', $todo->id) }}">
                     {{ csrf_field() }}
                     {{ method_field('DELETE')}}
                     <button>削除</button>

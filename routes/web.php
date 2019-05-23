@@ -11,13 +11,9 @@
 |
 */
 
-Route::get('/', 'TodoController@index');
-Route::get('/create', 'TodoController@create');
-Route::post('/store', 'TodoController@store');
-Route::get('/show/{id}', 'TodoController@show');
-Route::get('/edit/{id}', 'TodoController@edit');
-Route::post('/update/{id}', 'TodoController@update');
-Route::delete('/delete/{id}', 'TodoController@delete');
+Route::get('/', function(){ return redirect('/todo'); });
 Route::get('/search', 'TodoController@search');
+Route::resource('todo', 'TodoController');
+
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

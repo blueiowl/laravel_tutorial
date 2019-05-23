@@ -31,7 +31,7 @@ class TodoController extends Controller
     public function store(Request $request){
         $todo = new Todo;
         $todo->fill($request->all())->save();
-        return redirect('/');
+        return redirect()->route('todo.index');
     }
 
     //詳細表示    
@@ -50,13 +50,13 @@ class TodoController extends Controller
     public function update(Request $request, $id){
         $todo = Todo::find($id);
         $todo->fill($request->all())->save();
-        return redirect('/');
+        return redirect()->route('todo.index');
     }
 
     //削除
-    public function delete($id){
+    public function destroy($id){
         Todo::find($id)->delete();
-        return redirect('/');
+        return redirect()->route('todo.index');
     } 
 
     //検索
