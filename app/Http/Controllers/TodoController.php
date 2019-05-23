@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Todo;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\TodoRequest;
 
 class TodoController extends Controller
 {
     //一覧表示
-    public function index(REQUEST $request){
+    public function index(Request $request){
         //ログインユーザのデータのみ表示する
         if(Auth::check()){
             $todos_undone        = Auth::user()->todos->where('status', '未着手')->sortByDesc('updated_at');
@@ -28,7 +29,7 @@ class TodoController extends Controller
     }
 
     //保存
-    public function store(Request $request){
+    public function store(TodoRequest $request){
         $todo = new Todo;
         $todo->fill($request->all())->save();
         return redirect()->route('todo.index');
@@ -47,7 +48,7 @@ class TodoController extends Controller
     }
 
     //更新
-    public function update(Request $request, $id){
+    public function update(TodoRequest $request, $id){
         $todo = Todo::find($id);
         $todo->fill($request->all())->save();
         return redirect()->route('todo.index');
@@ -60,7 +61,7 @@ class TodoController extends Controller
     } 
 
     //検索
-    public function search(REQUEST $request){
+    public function search(Request $request){
         $todos = Todo::where('content', $request->content)->get();
         return view('todo.search', ['todos' => $todos]);
     }
