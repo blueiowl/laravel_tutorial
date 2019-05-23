@@ -9,7 +9,7 @@
 @section('content')
 <form method="POST" action="{{ action('TodoController@update', $todo->id) }}">
     {{ csrf_field() }}
-    {{ method_field('PUT')}}
+    {{ method_field('PATCH')}}
     <p>
         <label>新規作業名</label>
         <input type="text" name="work_name" value="{{ $todo->work_name }}">
