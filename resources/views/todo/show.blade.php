@@ -7,11 +7,36 @@
 @endsection
 
 @section('content')
-    <p>ID: {{ $todo->id }}</p>    
-    <p>作業名: {{ $todo->work_name }}</p>
-    <p>状態: {{ $todo->status }}</p>
-    <p>作業内容: {{ $todo->content }}</p>
-    <p>ユーザーid: {{ $todo->user_id }}</p>
-    <p>作成日時: {{ $todo->created_at }}</p>
-    <p>更新日時: {{ $todo->updated_at }}</p>
+<div class="container">
+    <table class="table table-striped table-bordered">
+        <tr>
+             <th>ID</th>
+             <td>{{ $todo->id }}</td>
+        </tr>
+        <tr>
+            <th>作業名</th>
+            <td>{{ $todo->work_name }}</td>
+        </tr>
+        <tr>
+            <th>状態</th>
+            <td>{{ $todo->status }}</td>
+        </tr>
+        <tr>
+            <th>作業内容</th>
+            <td>{{ $todo->content }}</td>
+        </tr>
+        <tr>
+            <th>ユーザーid</th>
+            <td>{{ $todo->user_id }}</td>
+        </tr>
+        <tr>
+            <th>作成日時</th>
+            <td>{{ $todo->created_at }}</td>
+        </tr>
+        <tr>
+            <th>更新日時</th>
+            <td>{{ $todo->updated_at }}</td>
+        </tr>
+    </table>
+</div>
 @endsection
