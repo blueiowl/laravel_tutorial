@@ -62,7 +62,7 @@ class TodoController extends Controller
 
     //検索
     public function search(Request $request){
-        $todos = Todo::where('content', $request->content)->get();
+        $todos = Todo::where('user_id', Auth::user()->id)->where('content', 'LIKE', '%'.$request->content.'%')->get();
         return view('todo.search', ['todos' => $todos]);
     }
 }
