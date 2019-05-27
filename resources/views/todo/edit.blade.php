@@ -25,9 +25,9 @@
         <div class="form-group">
             <label>作業状態</label>
             <select name="status" class="form-control">
-                <option value=1 @if($todo->status === '未着手') selected @endif>未着手</option>
-                <option value=2 @if($todo->status === '作業中') selected @endif>作業中</option>
-                <option value=3 @if($todo->status === '完了')   selected @endif>完了</option>
+                <option value="{{ Config::get('const.undone') }}"           @if($todo->status === Config::get('const.undone') )           selected @endif>未着手</option>
+                <option value="{{ Config::get('const.work_in_progress') }}" @if($todo->status === Config::get('const.work_in_progress') ) selected @endif>作業中</option>
+                <option value="{{ Config::get('const.done') }}"             @if($todo->status === Config::get('const.done') )             selected @endif>完了</option>
             </select>
         </div>
         <div class="form-group">

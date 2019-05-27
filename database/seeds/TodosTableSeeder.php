@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\Todo;
+// use Config\const;
 
 class TodosTableSeeder extends Seeder
 {
@@ -18,13 +19,13 @@ class TodosTableSeeder extends Seeder
             $todo->work_name     = 'work_name'.$i;
             $todo->content      = 'content'.$i;
             $todo->user_id   = 1;
-
+            
             if($i === 1 || $i === 2){
-                $todo->status       = 1;//未着手
+                $todo->status       = Config::get('const.undone');//未着手
             }elseif($i === 3 || $i === 4){
-                $todo->status       = 2;//作業中
+                $todo->status       = Config::get('const.work_in_progress');//作業中
             }else{
-                $todo->status       = 3;//完了
+                $todo->status       = Config::get('const.done');//完了
             }
             $todo->save();
         }
@@ -36,11 +37,11 @@ class TodosTableSeeder extends Seeder
             $todo->user_id   = 2;
 
             if($i === 7 || $i === 8){
-                $todo->status       = 1;//未着手
+                $todo->status       = Config::get('const.undone');//未着手
             }elseif($i === 9 || $i === 10){
-                $todo->status       = 2;//作業中
+                $todo->status       = Config::get('const.work_in_progress');//作業中
             }else{
-                $todo->status       = 3;//完了
+                $todo->status       = Config::get('const.done');//完了
             }
             $todo->save();
         }

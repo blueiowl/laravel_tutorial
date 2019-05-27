@@ -24,9 +24,9 @@
         <div class="form-group">
             <label>作業状態</label>
             <select name="status" class="form-control">
-                <option value=1>未着手</option>
-                <option value=2>作業中</option>
-                <option value=3>完了</option>
+                <option value="{{ Config::get('const.undone') }}">未着手</option>
+                <option value="{{ Config::get('const.work_in_progress') }}">作業中</option>
+                <option value="{{ Config::get('const.done') }}">完了</option>
             </select>
         </div>
         <div class="form-group">

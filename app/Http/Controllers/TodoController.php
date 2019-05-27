@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Todo;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Todo;
 use App\Http\Requests\TodoRequest;
+use Config;
 
 class TodoController extends Controller
 {
@@ -13,10 +14,10 @@ class TodoController extends Controller
     public function index(Request $request){
         //ログインユーザのデータのみ表示する
         if(Auth::check()){
-            $todos_undone        = Auth::user()->todos->where('status', '未着手')->sortByDesc('updated_at');
-            $todos_workInProcess = Auth::user()->todos->where('status', '作業中')->sortByDesc('updated_at');
-            $todos_done          = Auth::user()->todos->where('status', '完了')->sortByDesc('updated_at');
-            $todos = collect($todos_undone)->concat($todos_workInProcess)->concat($todos_done);
+            $todos_undone           = Auth::user()->todos->where('status', Config::get('const.undone') )->sortByDesc('updated_at');
+            $todos_work_in_progress = Auth::user()->todos->where('status', Config::get('const.work_in_progress') )->sortByDesc('updated_at');
+            $todos_done             = Auth::user()->todos->where('status', Config::get('const.done') )->sortByDesc('updated_at');
+            $todos = collect($todos_undone)->concat($todos_work_in_progress)->concat($todos_done);
             return view('todo.index', ['todos' => $todos]);
         }else{
             return view('todo.index');
@@ -62,7 +63,11 @@ class TodoController extends Controller
 
     //検索
     public function search(Request $request){
-        $todos = Todo::where('user_id', Auth::user()->id)->where('content', 'LIKE', '%'.$request->content.'%')->get();
+        $todos_searched         = Todo::where('user_id', Auth::user()->id)->where('content', 'LIKE', '%'.$request->content.'%')->get();
+        $todos_undone           = $todos_searched->where('status', Config::get('const.undone') )->sortByDesc('updated_at');
+        $todos_work_in_progress = $todos_searched->where('status', Config::get('const.work_in_progress') )->sortByDesc('updated_at');
+        $todos_done             = $todos_searched->where('status', Config::get('const.done') )->sortByDesc('updated_at');
+        $todos = collect($todos_undone)->concat($todos_work_in_progress)->concat($todos_done);
         return view('todo.search', ['todos' => $todos]);
     }
 }
