@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\Todo;
-// use Config\const;
 
 class TodosTableSeeder extends Seeder
 {
