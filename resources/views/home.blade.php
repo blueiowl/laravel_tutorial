@@ -8,7 +8,7 @@
                 <div class="card-header">ダッシュボード</div>
 
                 <div class="card-body">
-                    ログイン成功
+                    <a href="{{ route('index') }}">タスク一覧</a>
                 </div>
             </div>
         </div>
