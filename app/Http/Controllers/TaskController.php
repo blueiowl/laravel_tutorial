@@ -80,7 +80,7 @@ class TaskController extends Controller
 
     // 特定タスク取得
     // タスク編集画面表示
-    public function edit(Task $task)
+    public function edit($id)
     {
         $user = \Auth::user();
         if(!$user) return redirect()->route('error.auth');
@@ -93,7 +93,7 @@ class TaskController extends Controller
 
     // タスク更新
     // タスク詳細画面にリダイレクト
-    public function update(Request $request, Task $task)
+    public function update(Request $request, $id)
     {
         $user = \Auth::user();
         if(!$user) return redirect()->route('error.auth');
@@ -109,8 +109,8 @@ class TaskController extends Controller
     }
 
     // タスク完了
-    // タスク詳細画面にリダイレクト
-    public function done(Request $request, Task $task)
+    // タスク一覧画面にリダイレクト
+    public function done($id)
     {
         $user = \Auth::user();
         if(!$user) return redirect()->route('error.auth');
@@ -121,12 +121,12 @@ class TaskController extends Controller
         $task->done_flag = true;
         $task->save();
 
-        return redirect()->route('tasks.show', ['id' => $task->id]);
+        return redirect()->route('tasks.index');
     }
 
     // タスク削除（ソフトデリート）
     // タスク一覧画面にリダイレクト
-    public function delete(Task $task)
+    public function delete($id)
     {
         $user = \Auth::user();
         if(!$user) return redirect()->route('error.auth');
