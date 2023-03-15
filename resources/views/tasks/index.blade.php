@@ -15,7 +15,20 @@
                         @foreach($tasks as $task)
                             <div class="list-group-item">
                                 <span class="row">
-                                    <a href="{{ route('tasks.show', ['id' => $task->id]) }}" class="col nav-link">{{ $task->title }}</a>
+                                    <a href="{{ route('tasks.show', ['id' => $task->id]) }}" class="col nav-link text-dark">{{ $task->title }}</a>
+                                    <div class="col">
+                                        @if($task->done_flag)
+                                            完了
+                                        @else
+                                            未了
+                                        @endif
+                                    </div>
+                                    <form action="{{ route('tasks.done', ['id' => $task->id]) }}" method="post">
+                                        @csrf
+                                        <div class="col">
+                                            <input type="submit" value="完了にする" class="btn btn-dark">
+                                        </div>
+                                    </form>
                                 </span>
                             </div>
                         @endforeach
