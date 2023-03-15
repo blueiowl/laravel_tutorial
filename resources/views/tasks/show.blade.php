@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-3">
             <h1 class="row py-xl-4">{{ $title }}</h1>
-            <div class="row py-xl-1 card">
+            <div class="row card">
                 <div class="card-header text-center">
                     <h3>{{ $task->title }}</h3>
                 </div>
@@ -53,6 +53,15 @@
                 <div class="col">
                     <div class="py-xl-2 d-flex justify-content-center">
                         <a href="{{ route('tasks.index') }}" class="btn btn-dark w-50">一覧に戻る</a>
+                    </div>
+                    <div class="py-xl-2 d-flex justify-content-center">
+                        <a href="{{ route('tasks.edit', ['id' => $task->id]) }}" class="btn btn-dark w-50">編集</a>
+                    </div>
+                    <div class="py-xl-2 d-flex justify-content-center">
+                        <form action="{{ route('tasks.delete', ['id' => $task->id]) }}" method="post" class="col d-flex justify-content-center">
+                            @csrf
+                            <input type="submit" value="削除" class="btn btn-danger w-50">
+                        </form>
                     </div>
                 </div>
             </div>

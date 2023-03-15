@@ -17,7 +17,7 @@ class TaskController extends Controller
         $tasks = Task::where([
             ['user_id', $user->id],
             ['delete_flag', false],
-        ])->paginate(10);
+        ])->paginate(5);
 
         return view('tasks.index', ['title' => 'タスク一覧', 'tasks' => $tasks]);
     }
