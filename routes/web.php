@@ -23,9 +23,9 @@ Route::group([
     Route::get('/new', 'TaskController@new')->name('tasks.new');
     Route::get('/{id}', 'TaskController@show')->name('tasks.show');
     Route::get('/{id}/edit', 'TaskController@edit')->name('tasks.edit');
-    Route::put('/{id}/update', 'TaskController@update')->name('tasks.update');
-    Route::put('/{id}/done', 'TaskController@done')->name('tasks.done');
-    Route::delete('/{id}/delete', 'TaskController@delete')->name('tasks.delete');
+    Route::post('/{id}/update', 'TaskController@update')->name('tasks.update');
+    Route::post('/{id}/done', 'TaskController@done')->name('tasks.done');
+    Route::post('/{id}/delete', 'TaskController@delete')->name('tasks.delete');
 });
 
 Auth::routes();

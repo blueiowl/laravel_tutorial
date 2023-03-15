@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-3">
-            <h1 class="row py-xl-5">{{ $title }}</h1>
+            <h1 class="row py-xl-4">{{ $title }}</h1>
             @if($task)
                 <div class="row py-xl-1 card">
                     <div class="card-header text-center">
@@ -55,8 +55,11 @@
                     <h3 class="text-dark">未了タスクはありません</h3>
                 </div>
             @endif
-            <div class="row py-xl-5 justify-content-center">
+            <div class="row py-xl-4 justify-content-center">
                 <div class="col">
+                    <div class="py-xl-2 d-flex justify-content-center">
+                        <a href="{{ route('tasks.show', ['id' => $task->id]) }}" class="btn btn-dark w-50">タスク詳細</a>
+                    </div>
                     <div class="py-xl-2 d-flex justify-content-center">
                         <a href="{{ route('tasks.index') }}" class="btn btn-dark w-50">タスク一覧</a>
                     </div>

@@ -59,7 +59,7 @@ class TaskController extends Controller
         $task->content = $request->input('content');
         $task->done_flag = false;
         $task->delete_flag = false;
-        $task->user_id = $request->input('user_id');
+        $task->user_id = $user->id;
         $task->save();
 
         return redirect()->route('tasks.show', ['id' => $task->id]);
@@ -133,7 +133,7 @@ class TaskController extends Controller
 
         $task = Task::find($id);
         if(!$task || $user->id != $task->user_id) return response()->view('error.other', ['title' => '予期せぬエラー'], 404);
-        
+
         $task->delete_flag = true;
         $task->save();
 
