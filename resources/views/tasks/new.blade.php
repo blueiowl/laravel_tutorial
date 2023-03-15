@@ -6,7 +6,7 @@
         <div class="col-md-3">
             <h1 class="row py-xl-4">{{ $title }}</h1>
             @if($task)
-                <div class="row py-xl-1 card">
+                <div class="row card">
                     <div class="card-header text-center">
                         <h3>{{ $task->title }}</h3>
                     </div>

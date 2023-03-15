@@ -3,10 +3,10 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-    <div class="col-md-3">
+        <div class="col-md-3">
             <h1 class="row py-xl-4">{{ $title }}</h1>
             @if(count($tasks) > 0)
-                <div class="row py-xl-1 card">
+                <div class="row card">
                     <div class="card-header text-center">
                         <h3>{{ __('タスク') }}</h3>
                     </div>
