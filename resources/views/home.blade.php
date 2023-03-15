@@ -8,7 +8,7 @@
                 <div class="card-header">ダッシュボード</div>
 
                 <div class="card-body">
-                    <a href="{{ route('index') }}">タスク一覧</a>
+                    <a href="{{ route('tasks.index') }}">タスク一覧</a>
                 </div>
             </div>
         </div>

@@ -1,34 +1,37 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
-    return view('welcome');
+    $user = \Auth::user();
+    if(!$user) return view('top', ['title' => 'トップ']);
+    return redirect()->route('tasks.new');
+});
+
+Route::group([
+    'prefix' => 'error',
+], function() {
+    Route::get('/auth', function() {
+        return response()->view('error.auth', ['title' => '認証エラー'], 401);
+    })->name('error.auth');
 });
 
 Route::group([
     'prefix' => 'tasks'
 ], function() {
-    Route::get('/', 'TaskController@index')->name('index');
-    Route::get('/create', 'TaskController@create')->name('create');
-    Route::post('/store', 'TaskController@store')->name('store');
-    Route::get('/new', 'TaskController@new')->name('new');
-    Route::get('/{id}', 'TaskController@show')->name('show');
-    Route::get('/{id}/edit', 'TaskController@edit')->name('edit');
-    Route::put('/{id}/update', 'TaskController@update')->name('update');
-    Route::put('/{id}/done', 'TaskController@done')->name('done');
-    Route::delete('/{id}/delete', 'TaskController@delete')->name('delete');
+    Route::get('/', 'TaskController@index')->name('tasks.index');
+    Route::get('/create', 'TaskController@create')->name('tasks.create');
+    Route::post('/store', 'TaskController@store')->name('tasks.store');
+    Route::get('/new', 'TaskController@new')->name('tasks.new');
+    Route::get('/{id}', 'TaskController@show')->name('tasks.show');
+    Route::get('/{id}/edit', 'TaskController@edit')->name('tasks.edit');
+    Route::put('/{id}/update', 'TaskController@update')->name('tasks.update');
+    Route::put('/{id}/done', 'TaskController@done')->name('tasks.done');
+    Route::delete('/{id}/delete', 'TaskController@delete')->name('tasks.delete');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::fallback(function() {
+    return response()->view('error.other', ['title' => '予期せぬエラー'], 404);
+});

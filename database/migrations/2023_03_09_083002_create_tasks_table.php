@@ -15,7 +15,8 @@ class CreateTasksTable extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->comment('やること');
+            $table->string('title')->comment('タイトル');
+            $table->string('content')->comment('内容');
             $table->boolean('done_flag')->comment('完了フラグ');
             $table->boolean('delete_flag')->comment('削除フラグ');
             $table->bigInteger('user_id')->comment('ユーザID（外部キー）');

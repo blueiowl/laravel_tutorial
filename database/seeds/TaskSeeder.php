@@ -12,12 +12,14 @@ class TaskSeeder extends Seeder
      */
     public function run()
     {
-        $todo = ['掃除', '洗濯', '料理'];
+        $title = ['掃除', '洗濯', '料理'];
+        $content = ['掃除機をかける', '溜まった洗濯物を洗濯機にかけて干す', 'ゆで卵を作る'];
         
         for($i = 0; $i < 3; $i ++)
         {
             $task = new Task;
-            $task->name = $todo[$i];
+            $task->title = $title[$i];
+            $task->content = $content[$i];
             $task->done_flag = false;
             $task->delete_flag = false;
             $task->user_id = 1;
@@ -25,7 +27,8 @@ class TaskSeeder extends Seeder
         }
 
         $task = new Task;
-        $task->name = '勉強';
+        $task->title = '勉強';
+        $task->content = '数学の問題集10ページ進める';
         $task->done_flag = false;
         $task->delete_flag = false;
         $task->user_id = 2;
