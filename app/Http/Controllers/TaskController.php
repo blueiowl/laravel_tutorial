@@ -8,18 +8,99 @@ use Illuminate\Http\Request;
 class TaskController extends Controller
 {
     // 全タスク取得
+    // タスク検索
     // タスク一覧画面表示
-    public function index()
+    public function index(Request $request)
     {
         $user = \Auth::user();
         if(!$user) return redirect()->route('error.auth');
 
-        $tasks = Task::where([
-            ['user_id', $user->id],
-            ['delete_flag', false],
-        ])->paginate(5);
+        $tasks = [];
+        $method = $request->method();
+        $search = $request->session()->get('search');
+        $radios = ['全ステータス', '未了', '完了'];
 
-        return view('tasks.index', ['title' => 'タスク一覧', 'tasks' => $tasks]);
+        if($method == 'POST') {
+            $keyword = $request->input('keyword');
+            $radio = $request->input('radio');
+        } elseif($method == 'GET') {
+            $keyword = $search['keyword'];
+            $radio = $search['radio'];
+        }
+
+        $request->session()->forget('search');
+
+        if(isset($radio)) {
+            if($radio < 0) {
+                if($keyword != '') {
+                    $tasks = Task::where([
+                        ['user_id', $user->id],
+                        ['delete_flag', false],
+                        ['title', 'like', "%{$keyword}%"],
+                    ])->orWhere([
+                        ['user_id', $user->id],
+                        ['delete_flag', false],
+                        ['content', 'like', "%{$keyword}%"],
+                    ])->paginate(5);
+                } else {
+                    $tasks = Task::where([
+                        ['user_id', $user->id],
+                        ['delete_flag', false],
+                    ])->paginate(5);
+                }
+            } else {
+                if($keyword != '') {
+                    $tasks = Task::where([
+                        ['user_id', $user->id],
+                        ['done_flag', $radio],
+                        ['delete_flag', false],
+                        ['title', 'like', "%{$keyword}%"],
+                    ])->orWhere([
+                        ['user_id', $user->id],
+                        ['done_flag', $radio],
+                        ['delete_flag', false],
+                        ['content', 'like', "%{$keyword}%"],
+                    ])->paginate(5);
+                } else {
+                    $tasks = Task::where([
+                        ['user_id', $user->id],
+                        ['done_flag', $radio],
+                        ['delete_flag', false],
+                    ])->paginate(5);
+                }
+            }
+        } else {
+            $radio = -1;
+            $tasks = Task::where([
+                ['user_id', $user->id],
+                ['delete_flag', false],
+            ])->paginate(5);
+        }
+
+        $request->session()->put('search', [
+            'keyword' => $keyword,
+            'radio' => $radio,
+        ]);
+
+        return view('tasks.index', [
+            'title' => 'タスク一覧',
+            'tasks' => $tasks,
+            'keyword' => $keyword,
+            'radio' => $radio,
+            'radios' => $radios,
+        ]);
+    }
+
+    // タスク検索条件クリア
+    // タスク一覧画面にリダイレクト
+    public function clear(Request $request)
+    {
+        $user = \Auth::user();
+        if(!$user) return redirect()->route('error.auth');
+
+        $request->session()->forget('search');
+
+        return redirect()->route('tasks.index');
     }
 
     // 最新タスク取得
