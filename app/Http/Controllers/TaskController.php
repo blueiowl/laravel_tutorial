@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Task;
 use Illuminate\Http\Request;
+use App\Http\Requests\TaskRequest;
 
 class TaskController extends Controller
 {
@@ -130,7 +131,7 @@ class TaskController extends Controller
 
     // 新規タスク作成
     // タスク詳細画面にリダイレクト
-    public function store(Request $request)
+    public function store(TaskRequest $request)
     {
         $user = \Auth::user();
         if(!$user) return redirect()->route('error.auth');
@@ -174,7 +175,7 @@ class TaskController extends Controller
 
     // タスク更新
     // タスク詳細画面にリダイレクト
-    public function update(Request $request, $id)
+    public function update(TaskRequest $request, $id)
     {
         $user = \Auth::user();
         if(!$user) return redirect()->route('error.auth');

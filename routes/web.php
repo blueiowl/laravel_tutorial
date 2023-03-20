@@ -33,8 +33,6 @@ Route::group([
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::fallback(function() {
     return response()->view('error.other', ['title' => '予期せぬエラー'], 404);
 });
