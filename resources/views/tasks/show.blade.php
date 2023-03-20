@@ -60,7 +60,7 @@
                     <div class="py-xl-2 d-flex justify-content-center">
                         <form action="{{ route('tasks.delete', ['id' => $task->id]) }}" method="post" class="col d-flex justify-content-center">
                             @csrf
-                            <input type="submit" value="削除" class="btn btn-danger w-50">
+                            <input type="submit" value="削除" class="btn btn-danger w-58-335">
                         </form>
                     </div>
                 </div>

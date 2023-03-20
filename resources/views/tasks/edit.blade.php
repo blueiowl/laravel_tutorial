@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-5">
             <h1 class="row py-xl-4">{{ $title }}</h1>
-            <div class="row py-xl-1 card">
+            <div class="row card">
                 <div class="card-header text-center">
                     <h3>タスク情報入力</h3>
                 </div>
